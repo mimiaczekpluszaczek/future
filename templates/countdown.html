@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function startCountdown(duration) {
+            var countdownElement = document.getElementById("countdown");
+            var timeRemaining = duration;
+
+            setInterval(function() {
+                var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+                if (timeRemaining <= 0) {
+                    clearInterval(countdown);
+                    countdownElement.innerHTML = "EXPIRED";
+                }
+
+                timeRemaining -= 1000;
+            }, 1000);
+        }
+
+        window.onload = function() {
+            var timeRemaining = {{ time_remaining.total_seconds() | int }} * 1000;
+            startCountdown(timeRemaining);
+        };
+    </script>
+</head>
+<body>
+    <h1>Countdown to {{ target_date }}</h1>
+    <div id="countdown"></div>
+</body>
+</html>
