@@ -10,7 +10,7 @@
             var countdownElement = document.getElementById("countdown");
             var timeRemaining = duration;
 
-            setInterval(function() {
+            var countdown = setInterval(function() {
                 var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
                 var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
@@ -34,7 +34,7 @@
     </script>
 </head>
 <body>
-    <h1>Countdown to {{ target_date }}</h1>
+    <h1>Countdown to Target Date</h1>
     <div id="countdown"></div>
 </body>
 </html>
