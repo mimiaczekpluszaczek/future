@@ -1,9 +1,9 @@
 from flask import Flask, render_template
 from datetime import datetime
 
-app = Flask(__name__)
+future = Flask(__name__)
 
-@app.route('/')
+@future.route('/')
 def countdown():
     target_date = datetime(2024, 8, 16,12,00,00,)  # Ustaw tutaj datę docelową
     current_date = datetime.now()
@@ -11,4 +11,4 @@ def countdown():
     return render_template('countdown.html', time_remaining=time_remaining)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    future.run(debug=True)
