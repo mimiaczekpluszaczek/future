@@ -6,6 +6,7 @@ future = Flask(__name__)
 freezer = Freezer(future)
 
 @future.route('/')
+@future.route('/home')
 def countdown():
     target_date = datetime(2024, 8, 16,12,8)
     current_date = datetime.now()
